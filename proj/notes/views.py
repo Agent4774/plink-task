@@ -1,4 +1,5 @@
 from .models import Note, Todo
+from .permissions import IsOwnerOrReadOnly
 from .serializers import NoteSerializer, TodoSerializer
 from rest_framework.generics import (
 	ListCreateAPIView,
@@ -21,7 +22,7 @@ class NoteListCreateAPIView(ListCreateAPIView):
 class NoteRetrieveUpdateDestoyView(RetrieveUpdateDestroyAPIView):
 		queryset = Note.objects.all()
 		serializer_class = NoteSerializer
-		permission_classes = [IsAuthenticated]
+		permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 
 class TodoListCreateAPIView(ListCreateAPIView):
@@ -38,4 +39,4 @@ class TodoListCreateAPIView(ListCreateAPIView):
 class TodoRetrieveUpdateDestoyView(RetrieveUpdateDestroyAPIView):
 		queryset = Todo.objects.all()
 		serializer_class = TodoSerializer
-		permission_classes = [IsAuthenticated]
+		permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]

@@ -1,8 +1,8 @@
 from .forms import RequestForm
 from .models import Request
 from .utils import get_request_ip
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def save_request(request):
@@ -12,13 +12,13 @@ def save_request(request):
 						instance = form.save(commit=False)
 						instance.ip = get_request_ip(request)
 						instance.save()
-						return render(request, 'requests/save_request.html', {
+						return render(request, 'reqs/save_request.html', {
 						'form': form,
 						'message': 'Request has been saved!'
 					})
 		else:
 				form = RequestForm()
-		return render(request, 'requests/save_request.html', {
+		return render(request, 'reqs/save_request.html', {
 				'form': form
 			})
 
@@ -27,5 +27,5 @@ def get_filtered_requests(request):
 			ip=get_request_ip(request)
 		)
 		if reqs.exists():
-				return render(request, 'requests/filtered_requests.html', {'reqs': reqs})
-		return render(request, 'requests/filtered_requests.html', {'message': 'No requests found'})
+				return render(request, 'reqs/filtered_requests.html', {'reqs': reqs})
+		return render(request, 'reqs/filtered_requests.html', {'message': 'No requests found'})
