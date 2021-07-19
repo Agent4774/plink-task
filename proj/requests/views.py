@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-
 def save_request(request):
 		if request.method == 'POST':
 				form = RequestForm(request.POST)
