@@ -1,0 +1,12 @@
+{% if reqs %}
+	{% for req in reqs %}
+		<div>
+			<p><strong>By:</strong> {{ req.email }}</p>
+			<p><strong>IP address:</strong> {{ req.ip }}</p>
+			<p><strong>First name: </strong> {{ req.first_name }}</p>
+			<p><strong>Last name: </strong> {{ req.last_name }}</p>
+		</div>
+	{% endfor %}
+{% else %}
+	<h1>{{ message}}</h1>
+{% endif %}
