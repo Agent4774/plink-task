@@ -1,6 +1,6 @@
 from django import forms
 from .models import Request
-import string
+from string import ascii_lowercase, ascii_uppercase, digits
 
 
 class RequestForm(forms.ModelForm):
@@ -23,7 +23,7 @@ class RequestForm(forms.ModelForm):
 			raise forms.ValidationError('Password must have from 7 to 16 symbols')
 		if not password[0].isupper():
 			raise forms.ValidationError('Password must start with upper case letter')
-		allowed_chars = string.ascii_uppercase + string.ascii_lowercase + string.digits + '_'
+		allowed_chars = ascii_uppercase + ascii_lowercase + digits + '_'
 		for char in password:
 			if char not in allowed_chars:
 				raise forms.ValidationError('Letters, digits and underscore allowed only')
@@ -31,7 +31,7 @@ class RequestForm(forms.ModelForm):
 
 	def clean_first_name(self):
 		first_name = self.cleaned_data['first_name']
-		allowed_chars = string.ascii_uppercase + string.ascii_lowercase + '-'
+		allowed_chars = ascii_uppercase + ascii_lowercase + '-'
 		for char in first_name:
 			if char not in allowed_chars:
 				raise forms.ValidationError(f'Letters and hyphen allowed only')
@@ -39,7 +39,7 @@ class RequestForm(forms.ModelForm):
 
 	def clean_last_name(self):
 		last_name = self.cleaned_data['last_name']
-		allowed_chars = string.ascii_uppercase + string.ascii_lowercase + '-' + ' '
+		allowed_chars = ascii_uppercase + ascii_lowercase + '-' + ' '
 		for char in last_name:
 			if char not in allowed_chars:
 				raise forms.ValidationError('Letters, hyphen and space allowed only')
