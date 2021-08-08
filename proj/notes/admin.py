@@ -4,9 +4,9 @@ from django.contrib import admin
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
-		pass
+	pass
 
 
 @admin.register(Todo)
 class TodoAdmin(admin.ModelAdmin):
-		pass
+	pass
